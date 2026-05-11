@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohamed Hassan — UI/UX Designer Portfolio</title>
+  <meta name="description" content="Mohamed Hassan is a certified UI/UX Designer specializing in user-centric design, problem-solving, and crafting seamless digital experiences. NTI Certified." />
+  <meta name="keywords" content="UI/UX Designer, Mohamed Hassan, Portfolio, Figma, User Experience, NTI, Design Thinking" />
+  <meta name="author" content="Mohamed Hassan" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mohamed Hassan — UI/UX Designer Portfolio" />
+  <meta property="og:description" content="Certified UI/UX Designer crafting intuitive, user-centric digital experiences." />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <canvas id="cursor-trail"></canvas>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ===== STAR FIELD ===== -->
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-icon">MH</span>
+        <span class="logo-text">Mohamed Hassan</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+        <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Let's Talk</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-shapes">
+      <div class="hero-shape shape-1"></div>
+      <div class="hero-shape shape-2"></div>
+      <div class="hero-shape shape-3"></div>
+    </div>
+    <div class="hero-container hero-centered">
+      
+      <!-- Central Orbital System -->
+      <div class="hero-orbital-system" data-animate="fade-up">
+        <!-- Orbit 3 (Outer) -->
+        <div class="orbit-path orbit-outer">
+          <div class="planet-position" style="--angle: 0deg"><div class="planet-icon"><img src="https://api.iconify.design/cib/canva.svg?color=white" alt="Canva" /></div></div>
+          <div class="planet-position" style="--angle: 180deg"><div class="planet-icon"><img src="https://api.iconify.design/cib/adobe-photoshop.svg?color=white" alt="Photoshop" /></div></div>
+        </div>
+        
+        <!-- Orbit 2 (Middle) -->
+        <div class="orbit-path orbit-middle">
+          <div class="planet-position" style="--angle: 45deg"><div class="planet-icon"><img src="https://api.iconify.design/cib/adobe-illustrator.svg?color=white" alt="Illustrator" /></div></div>
+          <div class="planet-position" style="--angle: 135deg"><div class="planet-icon"><img src="https://api.iconify.design/simple-icons/affinity.svg?color=white" alt="Affinity" /></div></div>
+          <div class="planet-position" style="--angle: 225deg"><div class="planet-icon"><img src="https://api.iconify.design/simple-icons/icloud.svg?color=white" alt="Cloude" /></div></div>
+          <div class="planet-position" style="--angle: 315deg"><div class="planet-icon"><img src="https://api.iconify.design/lucide/mouse-pointer-2.svg?color=white" alt="Maze" /></div></div>
+        </div>
+
+        <!-- Orbit 1 (Inner) -->
+        <div class="orbit-path orbit-inner">
+          <div class="planet-position" style="--angle: 90deg"><div class="planet-icon"><img src="https://api.iconify.design/cib/figma.svg?color=white" alt="Figma" /></div></div>
+          <div class="planet-position" style="--angle: 210deg"><div class="planet-icon"><img src="https://api.iconify.design/cib/adobe-xd.svg?color=white" alt="Adobe XD" /></div></div>
+          <div class="planet-position" style="--angle: 330deg"><div class="planet-icon"><img src="https://api.iconify.design/lucide/rocket.svg?color=white" alt="Antigravity" /></div></div>
+        </div>
+
+        <!-- Central Portrait -->
+        <div class="hero-profile-wrapper central-portrait">
+          <div class="profile-glow"></div>
+          <div class="profile-image-container">
+            <img src="assets/profile.jpg" alt="Mohamed Hassan" class="profile-image" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Content (Centered Below) -->
+      <div class="hero-content text-center">
+        <div class="hero-badge" data-animate="fade-up" data-delay="100">
+          <img src="https://logo.clearbit.com/nti.sci.eg" alt="NTI Logo" class="badge-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+          <i data-lucide="award" class="badge-icon" style="display:none;"></i>
+          <span>UI/UX Designer</span>
+        </div>
+        <h1 class="hero-title" data-animate="fade-up" data-delay="200">
+          Mohamed Hassan<br />
+          <span class="hero-title-accent">Crafting Digital Experiences</span>
+        </h1>
+        <p class="hero-subtitle" data-animate="fade-up" data-delay="300" style="max-width: 600px; margin: 0 auto 32px auto;">
+          Passionate about user-centric design and solving complex problems through intuitive,
+          research-driven interfaces. Certified by the
+          <strong><img src="https://logo.clearbit.com/nti.sci.eg" alt="NTI" class="inline-logo" onerror="this.style.display='none'" />NTI</strong>.
+        </p>
+        <div class="hero-actions justify-center" data-animate="fade-up" data-delay="400">
+          <a href="#projects" class="btn btn-primary" id="heroCtaBtn">
+            <span>View My Work</span>
+            <i data-lucide="arrow-down-right" class="btn-icon"></i>
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <span>Get in Touch</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div class="hero-scroll-indicator" data-animate="fade-up" data-delay="600">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS SECTION ===== -->
+  <section class="projects" id="projects">
+    <div class="section-container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-tag">
+          <i data-lucide="briefcase"></i>
+          Selected Work
+        </span>
+        <h2 class="section-title">Projects & Case Studies</h2>
+        <p class="section-description">
+          A curated collection of UI/UX projects showcasing my approach to
+          solving real user problems through research-driven design.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="project-card" data-animate="fade-up" data-delay="0">
+          <div class="project-image">
+            <img src="assets/project-banking.png" alt="FinFlow Banking App Redesign" loading="lazy" />
+            <div class="project-overlay">
+              <a href="#" class="project-link">
+                <i data-lucide="external-link"></i>
+                <span>View Case Study</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">FinFlow — Banking App Redesign</h3>
+            <p class="project-description">
+              Redesigned the mobile banking experience to reduce transaction
+              friction by 40%. Conducted user interviews and A/B testing to
+              validate the new information architecture.
+            </p>
+            <div class="project-tags">
+              <span class="tag"><img src="https://api.iconify.design/cib/figma.svg?color=white" alt="Figma" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px;margin-top:-2px" />Figma</span>
+              <span class="tag">User Research</span>
+              <span class="tag">Prototyping</span>
+              <span class="tag">A/B Testing</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card" data-animate="fade-up" data-delay="100">
+          <div class="project-image">
+            <img src="assets/project-food.png" alt="Yummi Food Delivery App" loading="lazy" />
+            <div class="project-overlay">
+              <a href="#" class="project-link">
+                <i data-lucide="external-link"></i>
+                <span>View Case Study</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Yummi — Food Delivery Reimagined</h3>
+            <p class="project-description">
+              Streamlined the ordering flow from 7 steps to 3. Used heuristic
+              evaluation and usability testing to eliminate pain points in the
+              checkout experience.
+            </p>
+            <div class="project-tags">
+              <span class="tag"><img src="https://api.iconify.design/cib/figma.svg?color=white" alt="Figma" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px;margin-top:-2px" />Figma</span>
+              <span class="tag">Wireframing</span>
+              <span class="tag">Usability Testing</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card" data-animate="fade-up" data-delay="200">
+          <div class="project-image">
+            <img src="assets/project-health.png" alt="MedConnect Healthcare App" loading="lazy" />
+            <div class="project-overlay">
+              <a href="#" class="project-link">
+                <i data-lucide="external-link"></i>
+                <span>View Case Study</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">MedConnect — Healthcare Booking</h3>
+            <p class="project-description">
+              Designed an accessible appointment booking system for elderly
+              users. Applied WCAG 2.1 guidelines and conducted accessibility
+              audits throughout the design process.
+            </p>
+            <div class="project-tags">
+              <span class="tag"><img src="https://api.iconify.design/cib/figma.svg?color=white" alt="Figma" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px;margin-top:-2px" />Figma</span>
+              <span class="tag">Accessibility</span>
+              <span class="tag">Design System</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card" data-animate="fade-up" data-delay="0">
+          <div class="project-image">
+            <img src="assets/project-ecommerce.png" alt="StyleVault E-Commerce Platform" loading="lazy" />
+            <div class="project-overlay">
+              <a href="#" class="project-link">
+                <i data-lucide="external-link"></i>
+                <span>View Case Study</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">StyleVault — E-Commerce Platform</h3>
+            <p class="project-description">
+              Overhauled the product discovery experience, resulting in a 25%
+              increase in conversion. Built a comprehensive design system with
+              60+ reusable components.
+            </p>
+            <div class="project-tags">
+              <span class="tag"><img src="https://api.iconify.design/cib/figma.svg?color=white" alt="Figma" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px;margin-top:-2px" />Figma</span>
+              <span class="tag">Design System</span>
+              <span class="tag"><img src="https://api.iconify.design/cib/react.svg?color=white" alt="React" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px;margin-top:-2px" />React</span>
+              <span class="tag">Interaction Design</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 5 -->
+        <article class="project-card" data-animate="fade-up" data-delay="100">
+          <div class="project-image">
+            <img src="assets/project-fitness.png" alt="PulseTrack Fitness App" loading="lazy" />
+            <div class="project-overlay">
+              <a href="#" class="project-link">
+                <i data-lucide="external-link"></i>
+                <span>View Case Study</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">PulseTrack — Fitness Companion</h3>
+            <p class="project-description">
+              Created a cross-platform fitness tracking experience with
+              gamification elements. Designed data visualizations that make
+              complex health metrics intuitive.
+            </p>
+            <div class="project-tags">
+              <span class="tag"><img src="https://api.iconify.design/cib/figma.svg?color=white" alt="Figma" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px;margin-top:-2px" />Figma</span>
+              <span class="tag">Data Visualization</span>
+              <span class="tag">Gamification</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 6 -->
+        <article class="project-card" data-animate="fade-up" data-delay="200">
+          <div class="project-image">
+            <img src="assets/project-travel.png" alt="Wanderly Travel Platform" loading="lazy" />
+            <div class="project-overlay">
+              <a href="#" class="project-link">
+                <i data-lucide="external-link"></i>
+                <span>View Case Study</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Wanderly — Travel Booking Platform</h3>
+            <p class="project-description">
+              Redesigned the search and booking flow for a travel platform,
+              reducing booking abandonment by 35%. Implemented personalized
+              recommendation cards.
+            </p>
+            <div class="project-tags">
+              <span class="tag"><img src="https://api.iconify.design/cib/figma.svg?color=white" alt="Figma" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px;margin-top:-2px" />Figma</span>
+              <span class="tag">User Flows</span>
+              <span class="tag">Personalization</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS SECTION ===== -->
+  <section class="skills" id="skills">
+    <div class="section-container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-tag">
+          <i data-lucide="zap"></i>
+          Expertise
+        </span>
+        <h2 class="section-title">Skills & Workflow</h2>
+        <p class="section-description">
+          My toolkit and design thinking process that powers every project
+          from concept to polished product.
+        </p>
+      </div>
+
+      <!-- Design Tools -->
+      <div class="skills-tools" data-animate="fade-up" data-delay="100">
+        <h3 class="skills-subtitle">Design Tools</h3>
+        <div class="tools-grid">
+          <div class="tool-card glass-card">
+            <div class="tool-icon" style="--tool-color: #A259FF">
+              <img src="https://api.iconify.design/cib/figma.svg?color=white" alt="Figma" width="28" height="28" />
+            </div>
+            <h4>Figma</h4>
+            <p>Primary design & prototyping tool</p>
+          </div>
+          <div class="tool-card glass-card">
+            <div class="tool-icon" style="--tool-color: #31A8FF">
+              <img src="https://api.iconify.design/cib/adobe-xd.svg?color=white" alt="Adobe XD" width="28" height="28" />
+            </div>
+            <h4>Adobe XD</h4>
+            <p>Interface design & interactions</p>
+          </div>
+          <div class="tool-card glass-card">
+            <div class="tool-icon" style="--tool-color: #EA4C89">
+              <img src="https://api.iconify.design/cib/adobe-photoshop.svg?color=white" alt="Photoshop" width="28" height="28" />
+            </div>
+            <h4>Photoshop</h4>
+            <p>Image editing & visual assets</p>
+          </div>
+          <div class="tool-card glass-card">
+            <div class="tool-icon" style="--tool-color: #FF9A00">
+              <img src="https://api.iconify.design/cib/adobe-illustrator.svg?color=white" alt="Illustrator" width="28" height="28" />
+            </div>
+            <h4>Illustrator</h4>
+            <p>Vector graphics & iconography</p>
+          </div>
+          <div class="tool-card glass-card">
+            <div class="tool-icon" style="--tool-color: #00C4CC">
+              <img src="https://api.iconify.design/cib/canva.svg?color=white" alt="Canva" width="28" height="28" />
+            </div>
+            <h4>Canva</h4>
+            <p>Quick mockups & presentations</p>
+          </div>
+          <div class="tool-card glass-card">
+            <div class="tool-icon" style="--tool-color: #7B68EE">
+              <img src="https://api.iconify.design/lucide/mouse-pointer-2.svg?color=white" alt="Maze" width="28" height="28" />
+            </div>
+            <h4>Maze</h4>
+            <p>Usability testing & analytics</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design Process -->
+      <div class="skills-process" data-animate="fade-up" data-delay="200">
+        <h3 class="skills-subtitle">My Design Thinking Process</h3>
+        <div class="process-timeline">
+          <div class="process-line"></div>
+
+          <div class="process-step">
+            <div class="step-number">01</div>
+            <div class="step-card glass-card">
+              <div class="step-icon">
+                <i data-lucide="search"></i>
+              </div>
+              <h4>Research & Discovery</h4>
+              <p>
+                Understanding users through interviews, surveys, competitor
+                analysis, and empathy mapping to define real problems.
+              </p>
+              <div class="step-tags">
+                <span>User Interviews</span>
+                <span>Surveys</span>
+                <span>Competitor Analysis</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="step-number">02</div>
+            <div class="step-card glass-card">
+              <div class="step-icon">
+                <i data-lucide="pencil-ruler"></i>
+              </div>
+              <h4>Wireframing & IA</h4>
+              <p>
+                Translating research insights into low-fidelity wireframes
+                and information architecture that guides user journeys.
+              </p>
+              <div class="step-tags">
+                <span>Lo-fi Wireframes</span>
+                <span>User Flows</span>
+                <span>Sitemaps</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="step-number">03</div>
+            <div class="step-card glass-card">
+              <div class="step-icon">
+                <i data-lucide="layers"></i>
+              </div>
+              <h4>Prototyping & Design</h4>
+              <p>
+                Building interactive hi-fi prototypes with design systems,
+                micro-interactions, and pixel-perfect visual design.
+              </p>
+              <div class="step-tags">
+                <span>Hi-fi Prototypes</span>
+                <span>Design Systems</span>
+                <span>Micro-interactions</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="step-number">04</div>
+            <div class="step-card glass-card">
+              <div class="step-icon">
+                <i data-lucide="flask-conical"></i>
+              </div>
+              <h4>Testing & Iteration</h4>
+              <p>
+                Validating designs through usability testing, A/B tests, and
+                iterating based on data-driven insights.
+              </p>
+              <div class="step-tags">
+                <span>Usability Testing</span>
+                <span>A/B Testing</span>
+                <span>Iteration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="contact" id="contact">
+    <div class="section-container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-tag">
+          <i data-lucide="mail"></i>
+          Get in Touch
+        </span>
+        <h2 class="section-title">Let's Work Together</h2>
+        <p class="section-description">
+          Have a project in mind? I'd love to hear about it. Drop me a
+          message and let's create something amazing.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <form class="contact-form glass-card" id="contactForm" data-animate="fade-up" data-delay="100">
+          <div class="form-group">
+            <label for="contactName">Your Name</label>
+            <div class="input-wrapper">
+              <i data-lucide="user"></i>
+              <input type="text" id="contactName" name="name" placeholder="John Doe" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contactEmail">Email Address</label>
+            <div class="input-wrapper">
+              <i data-lucide="at-sign"></i>
+              <input type="email" id="contactEmail" name="email" placeholder="john@example.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contactMessage">Your Message</label>
+            <div class="input-wrapper textarea-wrapper">
+              <i data-lucide="message-square"></i>
+              <textarea id="contactMessage" name="message" placeholder="Tell me about your project..." rows="5" required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" id="contactSubmit">
+            <span>Send Message</span>
+            <i data-lucide="send"></i>
+          </button>
+          <div class="form-status" id="formStatus"></div>
+        </form>
+
+        <div class="contact-info" data-animate="fade-up" data-delay="200">
+          <div class="info-card glass-card">
+            <div class="info-icon">
+              <i data-lucide="mail"></i>
+            </div>
+            <h4>Email Me</h4>
+            <a href="mailto:Mohameedhasan81@gmail.com">Mohameedhasan81@gmail.com</a>
+          </div>
+          <div class="info-card glass-card">
+            <div class="info-icon">
+              <img src="https://api.iconify.design/cib/linkedin.svg?color=white" alt="LinkedIn" width="20" height="20" />
+            </div>
+            <h4>LinkedIn</h4>
+            <a href="https://www.linkedin.com/in/mohameed-hassan" target="_blank" rel="noopener noreferrer">
+              <img src="https://api.iconify.design/cib/linkedin.svg?color=white" alt="LinkedIn" style="width:16px;height:16px;display:inline-block;vertical-align:middle;margin-right:6px" />
+              linkedin.com/in/mohameed-hassan
+            </a>
+          </div>
+          <div class="info-card glass-card">
+            <div class="info-icon">
+              <i data-lucide="map-pin"></i>
+            </div>
+            <h4>Location</h4>
+            <p>Cairo, Egypt</p>
+          </div>
+          <div class="info-card glass-card">
+            <div class="info-icon">
+              <i data-lucide="clock"></i>
+            </div>
+            <h4>Availability</h4>
+            <p>Open to freelance & full-time</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="logo-icon">MH</span>
+          <span class="logo-text">Mohamed Hassan</span>
+        </div>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/mohameed-hassan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <img src="https://api.iconify.design/cib/linkedin.svg?color=white" alt="LinkedIn" width="18" height="18" />
+          </a>
+          <a href="mailto:Mohameedhasan81@gmail.com" aria-label="Email">
+            <i data-lucide="mail"></i>
+          </a>
+          <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">
+            <img src="https://api.iconify.design/cib/dribbble.svg?color=white" alt="Dribbble" width="18" height="18" />
+          </a>
+          <a href="https://behance.net" target="_blank" rel="noopener noreferrer" aria-label="Behance">
+            <img src="https://api.iconify.design/cib/behance.svg?color=white" alt="Behance" width="18" height="18" />
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <img src="https://api.iconify.design/cib/github.svg?color=white" alt="GitHub" width="18" height="18" />
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mohamed Hassan. All rights reserved.</p>
+        <p>Designed & Built with <span class="heart">&hearts;</span> in Cairo</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
