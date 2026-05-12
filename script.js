@@ -183,45 +183,138 @@ function initActiveNavLink() {
   });
 }
 
-// ===== CONTACT FORM =====
+// ===== CONTACT FORM (EmailJS) =====
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  EMAILJS CONFIGURATION — REPLACE THESE WITH YOUR ACTUAL VALUES  ║
+// ║                                                                  ║
+// ║  1. Sign up at https://www.emailjs.com (free tier = 200/month)  ║
+// ║  2. Add an Email Service (Gmail) → copy the SERVICE_ID          ║
+// ║  3. Create an Email Template → copy the TEMPLATE_ID             ║
+// ║     Template variables: {{from_name}}, {{from_email}}, {{message}} ║
+// ║  4. Copy your PUBLIC_KEY from Account > API Keys                ║
+// ║                                                                  ║
+// ║  If deploying on Vercel, add these as Environment Variables:    ║
+// ║    EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY  ║
+// ╚══════════════════════════════════════════════════════════════════╝
+const EMAILJS_SERVICE_ID  = 'service_ayesaoo';
+const EMAILJS_TEMPLATE_ID = 'template_xbn2b97';
+const EMAILJS_PUBLIC_KEY   = 'eA0w3VIhxgG1TdGeO';
+
 function initContactForm() {
+  // Initialize EmailJS
+  if (window.emailjs) {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }
+
   const form = document.getElementById('contactForm');
-  const status = document.getElementById('formStatus');
+  const btn = document.getElementById('contactSubmit');
+  const nameInput = document.getElementById('contactName');
+  const emailInput = document.getElementById('contactEmail');
+  const messageInput = document.getElementById('contactMessage');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = document.getElementById('contactName').value.trim();
-    const email = document.getElementById('contactEmail').value.trim();
-    const message = document.getElementById('contactMessage').value.trim();
 
-    if (!name || !email || !message) {
-      showStatus('Please fill in all fields.', 'error');
+    // Clear previous errors
+    document.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+
+    // ── Field-level validation ──
+    let hasError = false;
+
+    if (!name) {
+      nameInput.closest('.input-wrapper').classList.add('input-error');
+      hasError = true;
+    }
+    if (!email) {
+      emailInput.closest('.input-wrapper').classList.add('input-error');
+      hasError = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailInput.closest('.input-wrapper').classList.add('input-error');
+      showToast('Please enter a valid email address.', 'error');
       return;
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showStatus('Please enter a valid email address.', 'error');
+    if (!message) {
+      messageInput.closest('.input-wrapper').classList.add('input-error');
+      hasError = true;
+    }
+
+    if (hasError) {
+      showToast('Please fill in all required fields.', 'error');
       return;
     }
 
-    // Simulate submission
-    const btn = document.getElementById('contactSubmit');
+    // ── Set loading state ──
     btn.disabled = true;
-    btn.innerHTML = '<span>Sending...</span>';
+    btn.classList.add('btn-loading');
+    btn.innerHTML = '<span>Sending...</span><span class="btn-spinner"></span>';
 
-    setTimeout(() => {
-      showStatus('Message sent successfully! I\'ll get back to you soon.', 'success');
+    try {
+      // Check if EmailJS is loaded & configured
+      if (!window.emailjs || EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID') {
+        // Fallback: simulate sending if keys aren't configured yet
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        showToast('Message sent! (Demo mode — configure EmailJS for real emails)', 'success');
+      } else {
+        // Real EmailJS send
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          from_name: name,
+          from_email: email,
+          message: message,
+          to_email: 'Mohameedhasan81@gmail.com'
+        });
+        showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
+      }
       form.reset();
+    } catch (err) {
+      console.error('EmailJS Error:', err);
+      showToast('Failed to send message. Please try again or email me directly.', 'error');
+    } finally {
+      // ── Restore button ──
       btn.disabled = false;
+      btn.classList.remove('btn-loading');
       btn.innerHTML = '<span>Send Message</span><i data-lucide="send"></i>';
       if (window.lucide) lucide.createIcons();
-    }, 1500);
+    }
   });
 
-  function showStatus(msg, type) {
-    status.textContent = msg;
-    status.className = 'form-status ' + type;
-    setTimeout(() => { status.className = 'form-status'; }, 5000);
-  }
+  // Remove error highlight on input focus
+  [nameInput, emailInput, messageInput].forEach(input => {
+    input.addEventListener('focus', () => {
+      input.closest('.input-wrapper').classList.remove('input-error');
+    });
+  });
+}
+
+// ===== TOAST NOTIFICATION =====
+let toastTimer = null;
+function showToast(message, type = 'success') {
+  const toast = document.getElementById('toast');
+  const toastIcon = document.getElementById('toastIcon');
+  const toastMsg = document.getElementById('toastMessage');
+
+  // Clear any existing timer
+  if (toastTimer) clearTimeout(toastTimer);
+
+  // Set content
+  toastMsg.textContent = message;
+  toastIcon.innerHTML = type === 'success' ? '✓' : '✕';
+
+  // Set type classes
+  toast.className = 'toast toast-' + type;
+
+  // Trigger show
+  requestAnimationFrame(() => {
+    toast.classList.add('visible');
+  });
+
+  // Auto-hide after 5 seconds
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('visible');
+  }, 5000);
 }
 
 // ===== CUSTOM CURSOR =====
