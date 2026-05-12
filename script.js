@@ -196,14 +196,17 @@ function initActiveNavLink() {
 // ║  If deploying on Vercel, add these as Environment Variables:    ║
 // ║    EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY  ║
 // ╚══════════════════════════════════════════════════════════════════╝
-const EMAILJS_SERVICE_ID  = 'service_ayesaoo';
+const EMAILJS_SERVICE_ID  = 'service_yik1k5w';
 const EMAILJS_TEMPLATE_ID = 'template_xbn2b97';
 const EMAILJS_PUBLIC_KEY   = 'eA0w3VIhxgG1TdGeO';
 
 function initContactForm() {
-  // Initialize EmailJS
+  // Initialize EmailJS with v4 syntax
   if (window.emailjs) {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    console.log('✅ EmailJS initialized successfully');
+  } else {
+    console.warn('⚠️ EmailJS SDK not loaded');
   }
 
   const form = document.getElementById('contactForm');
@@ -253,25 +256,40 @@ function initContactForm() {
     btn.innerHTML = '<span>Sending...</span><span class="btn-spinner"></span>';
 
     try {
-      // Check if EmailJS is loaded & configured
-      if (!window.emailjs || EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID') {
-        // Fallback: simulate sending if keys aren't configured yet
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        showToast('Message sent! (Demo mode — configure EmailJS for real emails)', 'success');
-      } else {
-        // Real EmailJS send
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-          from_name: name,
-          from_email: email,
-          message: message,
-          to_email: 'Mohameedhasan81@gmail.com'
-        });
-        showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
+      if (!window.emailjs) {
+        throw new Error('EmailJS SDK not loaded. Check your internet connection.');
       }
+
+      // Template params must EXACTLY match your EmailJS template variables
+      const templateParams = {
+        from_name: name,
+        from_email: email,
+        message: message
+      };
+
+      console.log('📧 Sending email with params:', templateParams);
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      console.log('✅ Email sent successfully');
+      showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
       form.reset();
     } catch (err) {
-      console.error('EmailJS Error:', err);
-      showToast('Failed to send message. Please try again or email me directly.', 'error');
+      // Detailed error logging for debugging
+      console.log('❌ EmailJS Error:', err);
+      console.log('Error status:', err?.status);
+      console.log('Error text:', err?.text);
+
+      let errorMsg = 'Failed to send message. Please try again or email me directly.';
+      if (err?.text) {
+        errorMsg += ' (' + err.text + ')';
+      }
+      showToast(errorMsg, 'error');
     } finally {
       // ── Restore button ──
       btn.disabled = false;
